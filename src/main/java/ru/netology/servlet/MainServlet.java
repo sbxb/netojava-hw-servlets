@@ -38,8 +38,6 @@ public class MainServlet extends HttpServlet {
         }
 
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//        response.setContentType("text/html");
-//        response.getWriter().write("<h2>Hello from MainServlet</h2>");
     }
 
     @Override

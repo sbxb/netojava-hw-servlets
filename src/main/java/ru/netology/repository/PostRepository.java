@@ -20,6 +20,7 @@ public class PostRepository {
     }
 
     public Post save(Post post) {
+        System.out.println("INFO: Repo saving post: " + post);
         repo.put(post.getId(), post);
         return post;
     }
