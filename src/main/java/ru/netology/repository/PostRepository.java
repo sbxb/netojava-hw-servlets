@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class PostRepository {
-    private final Map<Long, Post> repo = new HashMap<>();
+    private final Map<Long, Post> repo = new HashMap<>(); // FIXME make repo thread-safe
 
     public List<Post> all() {
         return new ArrayList<>(repo.values());
