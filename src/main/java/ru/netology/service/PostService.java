@@ -31,6 +31,7 @@ public class PostService {
     }
 
     public void removeById(long id) {
+        // FIXME Do not return OK if id does not exist
         repository.removeById(id);
     }
 }
