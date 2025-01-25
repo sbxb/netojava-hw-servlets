@@ -1,10 +1,9 @@
 package ru.netology.controller;
 
 import com.google.gson.Gson;
+import jakarta.servlet.http.HttpServletResponse;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
-
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.Reader;

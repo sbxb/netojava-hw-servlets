@@ -1,6 +1,5 @@
 package ru.netology.servlet;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ public class MainServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final var path = request.getRequestURI();
         System.out.println("INFO Hit doGet() with " + path);
 
@@ -44,7 +43,7 @@ public class MainServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final var path = request.getRequestURI();
         if (path.equals("/api/posts")) {
             controller.save(request.getReader(), response);
@@ -54,7 +53,7 @@ public class MainServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final var path = request.getRequestURI();
         if (path.matches("/api/posts/\\d+")) {
             final var id = Long.parseLong(path.substring(path.lastIndexOf("/")));
