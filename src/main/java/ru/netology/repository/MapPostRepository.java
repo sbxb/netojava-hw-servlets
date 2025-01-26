@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class MapPostRepository implements PostRepository {
     private final Map<Long, Post> repo = new ConcurrentHashMap<>();
+    private final AtomicLong autoincrement = new AtomicLong();
 
     public List<Post> all() {
         return new ArrayList<>(repo.values());
@@ -21,6 +23,9 @@ public class MapPostRepository implements PostRepository {
 
     public Post save(Post post) {
         System.out.println("INFO: Repo saving post: " + post);
+        if (post.getId() == 0) {
+            post.setId(autoincrement.incrementAndGet());
+        }
         repo.put(post.getId(), post);
         return post;
     }
