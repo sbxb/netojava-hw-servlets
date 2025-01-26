@@ -18,7 +18,7 @@ public class PostService {
         return repository.all();
     }
 
-    public Post getById(long id) {
+    public Post getById(long id) throws NotFoundException {
         return repository.getById(id).orElseThrow(NotFoundException::new);
     }
 
@@ -26,8 +26,11 @@ public class PostService {
         return repository.save(post);
     }
 
-    public void removeById(long id) {
-        // FIXME Do not return OK if id does not exist
+    public void removeById(long id) throws NotFoundException {
+        // explicitly refuse to delete a nonexistent post
+        if (repository.getById(id).isEmpty()) {
+            throw new NotFoundException();
+        }
         repository.removeById(id);
     }
 }

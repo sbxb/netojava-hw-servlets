@@ -22,15 +22,16 @@ public class MapPostRepository implements PostRepository {
     }
 
     public Post save(Post post) {
-        System.out.println("INFO: Repo saving post: " + post);
         if (post.getId() == 0) {
             post.setId(autoincrement.incrementAndGet());
         }
+        System.out.println("INFO: Repo saving post: " + post);
         repo.put(post.getId(), post);
         return post;
     }
 
     public void removeById(long id) {
+        System.out.println("INFO: Repo deleting post with id " + id);
         repo.remove(id);
     }
 }

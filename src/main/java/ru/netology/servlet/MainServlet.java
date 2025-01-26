@@ -33,7 +33,7 @@ public class MainServlet extends HttpServlet {
         }
 
         if (path.matches("/api/posts/\\d+")) {
-            final var id = Long.parseLong(path.substring(path.lastIndexOf("/")));
+            final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             controller.getById(id, response);
             return;
         }
