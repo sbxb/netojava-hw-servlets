@@ -41,8 +41,12 @@ public class PostController {
         response.setContentType(APPLICATION_JSON);
         final var gson = new Gson();
         final var post = gson.fromJson(body, Post.class);
-        final var data = service.save(post);
-        response.getWriter().print(gson.toJson(data));
+        try {
+            final var data = service.save(post);
+            response.getWriter().print(gson.toJson(data));
+        } catch (NotFoundException e) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
     }
 
     public void removeById(long id, HttpServletResponse response) {

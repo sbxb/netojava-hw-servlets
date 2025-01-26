@@ -22,7 +22,11 @@ public class PostService {
         return repository.getById(id).orElseThrow(NotFoundException::new);
     }
 
-    public Post save(Post post) {
+    public Post save(Post post) throws NotFoundException {
+        // explicitly refuse to update a nonexistent post
+        if (post.getId() != 0 && repository.getById(post.getId()).isEmpty()) {
+            throw new NotFoundException();
+        }
         return repository.save(post);
     }
 
