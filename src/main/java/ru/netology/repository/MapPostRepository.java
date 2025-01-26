@@ -3,13 +3,13 @@ package ru.netology.repository;
 import ru.netology.model.Post;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MapPostRepository implements PostRepository {
-    private final Map<Long, Post> repo = new HashMap<>(); // FIXME make repo thread-safe
+    private final Map<Long, Post> repo = new ConcurrentHashMap<>();
 
     public List<Post> all() {
         return new ArrayList<>(repo.values());
