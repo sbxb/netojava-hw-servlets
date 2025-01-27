@@ -25,7 +25,6 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final var path = request.getRequestURI();
-        System.out.println("INFO Hit doGet() with " + path);
 
         if (path.equals("/api/posts")) {
             controller.all(response);
@@ -54,7 +53,6 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final var path = request.getRequestURI();
-        System.out.println("INFO Hit doDelete() with " + path);
         if (path.matches("/api/posts/\\d+")) {
             final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             controller.removeById(id, response);
